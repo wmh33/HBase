@@ -19,6 +19,14 @@ public class HBaseDriver extends Configured implements Tool{
 	// args => {FromTable,ToTable,SetVersion,ColumnFromTable,ColumnToTable}
 	@Override
 	public int run(String[] args) throws Exception {
+		if(args.length!=5){
+			System.err.println("Usage:\n demo.job.HBaseDriver <input> <fromTableName> "
+					+ "<output> <toTableName>"
+					+"< versions >"
+					+ " <cf1:c1,cf1:c2,cf1:c10,cf1:c11,cf1:c14> or <-1> "
+					+ "<cf1:c1,cf1:c10,cf1:c14> or <-1>");
+			return -1;
+		}
 		Configuration conf = getConf();
 		FROMTABLE = args[0];
 		TOTABLE = args[1];
@@ -35,7 +43,7 @@ public class HBaseDriver extends Configured implements Tool{
 		job.setJarByClass(HBaseDriver.class);
 		Scan scan = new Scan();
 		// 判断是否需要设置版本
-		if(SETVERSION != "0"){
+		if(SETVERSION != "0" || SETVERSION != "1"){
 			scan.setMaxVersions(Integer.parseInt(SETVERSION));
 		}
 		// 设置HBase表输入：表名、scan、Mapper类、mapper输出键类型、mapper输出值类型
