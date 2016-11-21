@@ -8,10 +8,10 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 
 /**
- * Created by fanzhe on 2016/10/25.
+ * Created by wmh on 2016/10/25.
  */
 public class JarUtil {
-    public static String jar(Class<?> cls){// ��֤ok
+    public static String jar(Class<?> cls){
         String outputJar =cls.getName()+".jar";
         String input = cls.getClassLoader().getResource("").getFile();
         input= input.substring(0,input.length()-1);
@@ -40,7 +40,7 @@ public class JarUtil {
     private static void jar(JarOutputStream out, File f, String base) throws Exception {
         if (f.isDirectory()) {
             File[] fl = f.listFiles();
-            base = base.length() == 0 ? "" : base + "/"; // ע�⣬��������б��
+            base = base.length() == 0 ? "" : base + "/"; 
             for (int i = 0; i < fl.length; i++) {
                 jar(out, fl[ i], base + fl[ i].getName());
             }
