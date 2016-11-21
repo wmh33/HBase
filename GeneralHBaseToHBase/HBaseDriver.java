@@ -66,8 +66,7 @@ public class HBaseDriver extends Configured implements Tool{
 	public static Configuration getConfiguration(){
 		if(configuration==null){
 			/**
-			 * TODO 了解如何直接从Windows提交代码到Hadoop集群
-			 *      并修改其中的配置为实际配置
+			 * 直接从Windows提交代码到Hadoop集群
 			 */
 			configuration = new Configuration();
 			configuration.setBoolean("mapreduce.app-submission.cross-platform", true);// 配置使用跨平台提交任务
